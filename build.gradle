@@ -1,0 +1,64 @@
+plugins {
+	id 'fabric-loom' version "${loom_version}"
+}
+
+base {
+	archivesName = 'duckmc'
+}
+
+repositories {
+	mavenCentral()
+}
+
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		"duckmc" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings loom.officialMojangMappings()
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// TwelveMonkeys ImageIO (WebP support), bundled inside the mod jar
+	["common-image", "common-io", "common-lang"].each {
+		implementation "com.twelvemonkeys.common:${it}:${project.twelvemonkeys_version}"
+		include "com.twelvemonkeys.common:${it}:${project.twelvemonkeys_version}"
+	}
+	["imageio-core", "imageio-metadata", "imageio-webp"].each {
+		implementation "com.twelvemonkeys.imageio:${it}:${project.twelvemonkeys_version}"
+		include "com.twelvemonkeys.imageio:${it}:${project.twelvemonkeys_version}"
+	}
+}
+
+processResources {
+	def version = project.version
+	inputs.property "version", version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.release = 21
+	it.options.encoding = 'UTF-8'
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_duckmc" }
+	}
+}

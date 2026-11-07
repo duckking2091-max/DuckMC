@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "duckmc",
+  "version": "${version}",
+  "name": "DuckMC",
+  "description": "DuckMC: native settings, profiles, performance tools, PvP visuals, Worlds & Resource Packs, and acknowledged opt-in Advantages for Minecraft 1.21.11.",
+  "authors": ["DuckMC contributors"],
+  "license": "MIT",
+  "environment": "client",
+  "mixins": ["duckmc.mixins.json"],
+  "entrypoints": {
+    "client": ["io.duckmc.DuckMcClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "1.21.11",
+    "java": ">=21",
+    "fabric-api": ">=0.141.6+1.21.11"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "required": false,
+  "package": "io.duckmc.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "plugin": "io.duckmc.mixin.DuckMixinPlugin",
+  "client": ["FrameMixin", "RenderPhaseMixin", "FramePhaseMixin", "HudPhaseMixin", "SectionPhaseMixin", "FpsLimiterMixin", "EntityVisibilityMixin", "DistantAnimationMixin", "CombatParticleMixin", "ShieldSoundMixin", "ShieldItemStateMixin", "ShieldItemModelMixin", "ShieldModelTintMixin", "ShieldPatternTintMixin", "HeldPresentationMixin", "OverlayPresentationMixin", "TotemNameMixin", "AdvantagesInputMixin", "AdvantagesAttackInvoker", "AdvantagesNetworkMixin", "CrystalPlacementMixin"],
+  "injectors": {"defaultRequire": 0}
+}
